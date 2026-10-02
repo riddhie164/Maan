@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#f7eee9">
+<title>For Maan, with love ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root{
+  --cream:#fbf5f1; --paper:#fffaf7; --rose:#a96569; --deep:#513d3d;
+  --soft:#ead5d0; --line:#eaded8; --muted:#907d7b;
+  --shadow:0 18px 50px rgba(85,58,55,.10);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:var(--cream);color:var(--deep)}
+body{font-family:'DM Sans',system-ui,sans-serif;overflow-x:hidden}
+button{font:inherit}
+.page{min-height:100vh;display:none;padding:24px 18px 44px;position:relative;overflow:hidden}
+.page.active{display:flex;flex-direction:column;animation:fade .55s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.bg-heart{position:absolute;opacity:.08;color:var(--rose);font-size:24px;animation:float 8s ease-in-out infinite}
+.h1,.script{font-family:'Cormorant Garamond',Georgia,serif}
+.container{width:100%;max-width:620px;margin:auto;position:relative;z-index:2}
+.eyebrow{font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--rose);font-weight:600}
+h1{font-size:clamp(48px,15vw,76px);line-height:.88;font-weight:500;margin:12px 0 18px;letter-spacing:-2px}
+h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:42px;line-height:1;margin:8px 0 12px;font-weight:500}
+p{line-height:1.65;color:#735f5e}
+.center{text-align:center}
+.card{background:rgba(255,250,247,.9);border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow)}
+.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff9f5;border-radius:999px;padding:8px 13px;font-size:12px;color:var(--muted)}
+.btn{border:0;border-radius:999px;padding:14px 20px;background:var(--deep);color:white;font-weight:600;cursor:pointer;min-height:48px;box-shadow:0 8px 20px rgba(81,61,61,.15);transition:.2s}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--deep);border:1px solid var(--line);box-shadow:none}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.actions .btn{flex:1;min-width:130px}
+.tiny{font-size:12px;color:var(--muted)}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.level{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--rose);font-weight:600}
+.progress{height:4px;background:#eaded8;border-radius:99px;margin:10px 0 24px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--rose);border-radius:99px}
+.option-grid{display:grid;gap:10px;margin-top:18px}
+.option{width:100%;text-align:left;padding:16px 17px;border:1px solid var(--line);background:#fffaf7;border-radius:18px;color:var(--deep);cursor:pointer;transition:.2s}
+.option:active{transform:scale(.985)}
+.option.selected{border-color:var(--rose);background:#f7e9e5}.option.correct{border-color:#5b9b68;background:#e8f5ea;color:#315d39}.option.wrong{border-color:#c87979;background:#fbeaea;color:#7a3f3f}
+.feedback{font-size:13px;color:var(--rose);min-height:22px;margin-top:14px}
+.heart-arena{height:430px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(145deg,#fffaf8,#f8efec);position:relative;overflow:hidden;touch-action:none}
+.heart{position:absolute;font-size:31px;border:0;background:none;padding:8px;cursor:pointer;animation:heartPop 1.8s ease-in-out infinite}
+@keyframes heartPop{0%,100%{transform:scale(.9) rotate(-6deg)}50%{transform:scale(1.08) rotate(5deg)}}
+.timer{font-family:'Cormorant Garamond',Georgia,serif;font-size:32px}
+.score{font-size:13px;color:var(--muted)}
+.build-section{margin-top:20px}
+.build-label{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--rose);font-weight:600;margin-bottom:9px}
+.build-options{display:flex;gap:8px;overflow-x:auto;padding:2px 1px 8px;scrollbar-width:none}
+.build-options::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:#fffaf7;border-radius:999px;padding:11px 14px;font-size:13px;color:var(--deep)}
+.chip.selected{background:var(--deep);color:white;border-color:var(--deep)}
+.day-result{margin-top:22px;padding:20px;border-radius:22px;background:#f7e9e5;border:1px solid #ead3ce;font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;line-height:1.25}.cute-note{font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;text-align:center;color:var(--muted);margin:16px 8px 0}
+.gifts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.gift{min-height:150px;border:1px solid var(--line);background:#fffaf7;border-radius:24px;padding:18px;text-align:left;cursor:pointer;position:relative;overflow:hidden}
+.gift .icon{font-size:28px}.gift strong{display:block;margin-top:16px}.gift span{display:block;font-size:11px;color:var(--muted);margin-top:5px}
+.gift.open{background:#f7e9e5}
+.gift-message{display:none;margin-top:10px;font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;line-height:1.2}
+.gift.open .gift-message{display:block}
+.final-card{padding:32px 22px;text-align:center;background:rgba(255,250,247,.92);border:1px solid var(--line);border-radius:32px;box-shadow:var(--shadow)}
+.final-card .big-heart{font-size:48px;margin:8px 0}
+.quote{font-family:'Cormorant Garamond',Georgia,serif;font-size:25px;line-height:1.3}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:20}
+.conf{position:absolute;animation:fall 2.4s linear forwards;font-size:20px}
+@keyframes fall{0%{transform:translateY(-30px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(540deg);opacity:0}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-18px) rotate(8deg)}}
+@media(max-width:380px){.page{padding-left:14px;padding-right:14px}.gifts{grid-template-columns:1fr}.heart-arena{height:390px}}
+</style>
+</head>
+<body>
+
+<div id="confetti"></div>
+
+<section class="page active" id="p0">
+  <span class="bg-heart" style="left:8%;top:14%">♡</span><span class="bg-heart" style="right:9%;top:27%;animation-delay:1s">♡</span>
+  <span class="bg-heart" style="left:15%;bottom:18%;animation-delay:2s">♡</span><span class="bg-heart" style="right:18%;bottom:12%;animation-delay:3s">♡</span>
+  <div class="container center" style="display:flex;flex-direction:column;justify-content:center;min-height:90vh">
+    <div class="eyebrow">a tiny corner of the internet</div>
+    <h1>For Maan,<br><i>with love.</i></h1>
+    <div class="card">
+      <div class="pill">♡ made especially for you</div>
+      <p style="margin:17px 0 5px">Four years, a million little moments,<br>and somehow I still get butterflies.</p>
+      <p class="tiny">Ready, boyfriend?</p>
+      <button class="btn" onclick="go(1)">Enter ♡</button>
+    </div>
+    <p class="tiny" style="margin-top:20px">Maan × Maahi</p>
+  </div>
+</section>
+
+<section class="page" id="p1">
+<div class="container">
+  <div class="topbar"><span class="level">Level 01</span><span class="pill"><span id="score">0</span> hearts</span></div>
+  <div class="progress"><i style="width:25%"></i></div>
+  <h2>Catch the Hearts ♡</h2>
+  <p>Tap the hearts before they disappear. You have <b>30 seconds</b>. Some of them have little messages for you.</p>
+  <div class="card" style="padding:15px;margin-top:15px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:0 4px 12px"><span class="timer" id="timer">30</span><span class="score">catch as many as you can</span></div>
+    <div class="heart-arena" id="arena"></div>
+  </div>
+  <p id="gameMsg" class="center quote" style="margin:18px 5px;min-height:66px"></p>
+  <div class="actions"><button class="btn" id="startBtn" onclick="startGame()">Start game ♡</button><button class="btn ghost" id="next1" onclick="go(2)" style="display:none">Next level →</button></div>
+</div>
+</section>
+
+<section class="page" id="p2">
+<div class="container">
+  <div class="topbar"><span class="level">Level 02</span><span class="pill">How well do you know us?</span></div>
+  <div class="progress"><i style="width:50%"></i></div>
+  <div class="card">
+    <div class="tiny" id="qnum">01 / 07</div>
+    <h2 id="qtext" style="font-size:34px"></h2>
+    <div class="option-grid" id="opts"></div>
+    <div class="feedback" id="feedback"></div>
+  </div>
+  <div class="actions"><button class="btn" id="nextQ" onclick="nextQuestion()" style="display:none">Next ♡</button></div>
+</div>
+</section>
+
+<section class="page" id="p3">
+<div class="container">
+  <div class="topbar"><span class="level">Level 03</span><span class="pill">Build our perfect day</span></div>
+  <div class="progress"><i style="width:75%"></i></div>
+  <h2>Our kind of perfect.</h2>
+  <p>No right answers. Just choose what feels the most <i>us</i>.</p>
+  <div class="card">
+    <div class="build-section"><div class="build-label">Morning</div><div class="build-options" data-group="morning"></div></div>
+    <div class="build-section"><div class="build-label">Food</div><div class="build-options" data-group="food"></div></div>
+    <div class="build-section"><div class="build-label">Evening</div><div class="build-options" data-group="evening"></div></div>
+    <div class="day-result" id="dayResult">Choose one from each little part of our day ♡</div>
+    <p class="cute-note">Plot twist: the actual perfect day is just us together, being silly, eating too much, and somehow talking for hours. ♡</p>
+  </div>
+  <div class="actions"><button class="btn" onclick="go(4)">Keep going →</button></div>
+</div>
+</section>
+
+<section class="page" id="p4">
+<div class="container">
+  <div class="topbar"><span class="level">Level 04</span><span class="pill">Open your gifts</span></div>
+  <div class="progress"><i style="width:90%"></i></div>
+  <h2>A few things for you.</h2>
+  <p>Tap each little box. Yes, you have to open all four. ♡</p>
+  <div class="gifts">
+    <div class="gift" onclick="openGift(this)"><div class="icon">🍓</div><strong>Something sweet</strong><span>tap to open</span><div class="gift-message">You make ordinary days feel a little sweeter. ♡</div></div>
+    <div class="gift" onclick="openGift(this)"><div class="icon">✉️</div><strong>Something true</strong><span>tap to open</span><div class="gift-message">After four years, I still like you. A lot. Like… ridiculously a lot.</div></div>
+    <div class="gift" onclick="openGift(this)"><div class="icon">🎀</div><strong>Something for Maan</strong><span>tap to open</span><div class="gift-message">One lifetime supply of forehead kisses, terrible jokes & choosing you. ♡</div></div>
+    <div class="gift" onclick="openGift(this)"><div class="icon">♡</div><strong>One last thing…</strong><span>tap to open</span><div class="gift-message">You are still my favourite notification.</div></div>
+  </div>
+  <div class="actions"><button class="btn" id="finalBtn" onclick="go(5)" disabled>One last question →</button></div>
+</div>
+</section>
+
+<section class="page" id="p5">
+<div class="container" style="display:flex;align-items:center;min-height:90vh">
+  <div class="final-card" style="width:100%">
+    <div class="eyebrow">the last question</div>
+    <div class="big-heart">♡</div>
+    <h2 style="font-size:46px">After 4 years…</h2>
+    <p class="quote">Would you choose Maahi<br>all over again?</p>
+    <button class="btn" onclick="finish()">YES ♡</button>
+    <p class="tiny" style="margin-top:18px">There is, by the way, only one acceptable answer.</p>
+  </div>
+</div>
+</section>
+
+<section class="page" id="p6">
+<div class="container" style="display:flex;align-items:center;min-height:90vh">
+  <div class="final-card" style="width:100%">
+    <div class="eyebrow">happy boyfriend's day</div>
+    <div class="big-heart">♥</div>
+    <h1 style="font-size:56px;margin:0 auto 10px;text-align:center;letter-spacing:-1px">Happy Boyfriend's Day,<br><i>Maan.</i></h1>
+    <p class="quote">4 years down.<br>A whole lot more to go, hopefully.</p>
+    <p style="margin-top:25px">And if I had to choose again,<br><b>I'd still choose you.</b></p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:24px;margin-top:30px">♡ Maan × Maahi ♡</p>
+    <p class="tiny">made with a ridiculous amount of love</p>
+    <button class="btn ghost" onclick="location.reload()" style="margin-top:18px">Replay ♡</button>
+  </div>
+</div>
+</section>
+
+<script>
+let current=0;
+function go(n){if(current===1 && n!==1 && playing)endGame();document.getElementById('p'+current).classList.remove('active');current=n;document.getElementById('p'+current).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});if(n===2)renderQ();}
+function confetti(){const c=document.getElementById('confetti');c.innerHTML='';const chars=['♡','♥','✦','·'];for(let i=0;i<35;i++){let s=document.createElement('span');s.className='conf';s.textContent=chars[Math.floor(Math.random()*chars.length)];s.style.left=Math.random()*100+'%';s.style.animationDelay=(Math.random()*.7)+'s';s.style.fontSize=(14+Math.random()*18)+'px';c.appendChild(s)}setTimeout(()=>c.innerHTML='',2800)}
+
+let playing=false, score=0, time=30, interval, spawn;
+const messages=[
+ 'you owe Maahi a date ♡',
+ '4 years ♡',
+ 'favourite person',
+ 'love you',
+ 'Maan × Maahi',
+ 'still my person ♡',
+ 'Cutu 🥺♡',
+ 'kuchupuchu 💕',
+ 'Mera cutu 🫶',
+ 'Muah muah muah 💋♡'
+];
+function spawnHeart(){
+ const arena=document.getElementById('arena'), h=document.createElement('button');h.className='heart';h.textContent=Math.random()>.15?'♡':'♥';
+ h.style.left=(3+Math.random()*78)+'%';
+ h.style.top=(3+Math.random()*78)+'%';
+ h.addEventListener('pointerdown',(e)=>{
+   e.preventDefault();
+   if(!playing || h.dataset.caught)return;
+   h.dataset.caught='1';
+   score++;
+   document.getElementById('score').textContent=score;
+   if(Math.random()<.45) document.getElementById('gameMsg').textContent=messages[Math.floor(Math.random()*messages.length)];
+   h.remove();
+ });
+ arena.appendChild(h);
+ setTimeout(()=>{if(h.isConnected)h.remove()},1700);
+}
+function endGame(){
+ clearInterval(interval);
+ clearInterval(spawn);
+ interval=null;
+ spawn=null;
+ playing=false;
+ document.querySelectorAll('.heart').forEach(x=>x.remove());
+ document.getElementById('gameMsg').textContent='You caught '+score+' hearts. But there is one heart you can never catch… Mine. It’s already yours. ♡';
+ document.getElementById('next1').style.display='block';
+ document.getElementById('startBtn').style.display='none';
+ confetti();
+}
+
+function startGame(){
+ if(playing)return;
+ clearInterval(interval);
+ clearInterval(spawn);
+ playing=true;
+ score=0;
+ time=30;
+ document.getElementById('score').textContent=0;
+ document.getElementById('timer').textContent=30;
+ document.getElementById('startBtn').style.display='none';
+ document.getElementById('next1').style.display='none';
+ document.getElementById('gameMsg').textContent='';
+ document.getElementById('arena').innerHTML='';
+ spawnHeart();
+ spawn=setInterval(spawnHeart,650);
+ interval=setInterval(()=>{
+   time--;
+   document.getElementById('timer').textContent=time;
+   if(time<=0) endGame();
+ },1000);
+}
+
+const questions=[
+  ['If Maahi says she is hungry, what is the safest response?',['Order food immediately','Ask what she wants','Say “you just ate”','Run away 😭'],0],
+  ['What sounds most like a perfect Maahi + Maan plan?',['A fancy outing','A quiet walk','Movie + snacks','Honestly… all of these'],3],
+  ['What would be the best place we have visited together?',['Temple','Movie','Your house','Anywhere, as long as we are together ♡'],3],
+  ['What matters most on a normal day?',['A huge surprise','Being together','Expensive plans','Perfect pictures'],1],
+  ['Little this or that: cheesecake or ice cream?',['Cheesecake 🍰','Ice cream 🍦'],null],
+  ['Little this or that: pizza or momos?',['Pizza 🍕','Momos 🥟'],null],
+  ['Little this or that: Maahi or Maahi?',['Maahi ♡','Obviously Maahi ♡'],null]
+];
+let qi=0;
+function renderQ(){
+ const q=questions[qi];
+ document.getElementById('qnum').textContent=String(qi+1).padStart(2,'0')+' / '+String(questions.length).padStart(2,'0');
+ document.getElementById('qtext').textContent=q[0];
+ const box=document.getElementById('opts');
+ box.innerHTML='';
+ document.getElementById('feedback').textContent='';
+ document.getElementById('nextQ').style.display='none';
+ q[1].forEach((x,i)=>{
+   const b=document.createElement('button');
+   b.className='option';
+   b.textContent=x;
+   b.onclick=()=>choose(b,i);
+   box.appendChild(b);
+ });
+}
+function choose(b,i){
+ const q=questions[qi];
+ const correct=q[3];
+ document.querySelectorAll('.option').forEach(x=>x.disabled=true);
+
+ if(correct !== null && correct !== undefined){
+   if(i===correct){
+     b.classList.add('selected','correct');
+     document.getElementById('feedback').textContent='Correct! Okayyy, boyfriend knows his Maahi.';
+   }else{
+     b.classList.add('selected','wrong');
+     document.querySelectorAll('.option')[correct].classList.add('correct');
+     document.getElementById('feedback').textContent='You owe Maahi kisses.';
+   }
+ }else{
+   b.classList.add('selected');
+   document.getElementById('feedback').textContent='Very serious research. Your answer has been officially recorded. 😌♡';
+ }
+ document.getElementById('nextQ').style.display='block';
+}
+function nextQuestion(){
+ if(qi<questions.length-1){qi++;renderQ()}
+ else{go(3);confetti()}
+}
+
+const build={
+ morning:['Slow morning + coffee','Breakfast together','Stay in bed a little longer','Talk until noon'],
+ food:['Pizza + something to share','Pasta date','Order everything','Dessert first. Obviously.'],
+ evening:['Movie + snacks','A cozy night in','Go somewhere and talk','Just us, doing nothing']
+};
+const selected={};
+Object.entries(build).forEach(([group,items])=>{
+ const box=document.querySelector('[data-group="'+group+'"]');
+ items.forEach((x,i)=>{let b=document.createElement('button');b.className='chip';b.textContent=x;b.onclick=()=>{selected[group]=x;box.querySelectorAll('.chip').forEach(y=>y.classList.remove('selected'));b.classList.add('selected');updateDay()};box.appendChild(b)})
+});
+function updateDay(){const r=document.getElementById('dayResult');if(Object.keys(selected).length<3){r.textContent='Choose one from each little part of our day ♡';return}r.textContent=selected.morning+', '+selected.food+', '+selected.evening+' — somehow talking for way too long, then refusing to say goodnight. ♡'}
+
+let opened=0;
+function openGift(el){if(el.classList.contains('open'))return;el.classList.add('open');opened++;if(opened===4){document.getElementById('finalBtn').disabled=false;document.getElementById('finalBtn').textContent='One last question →';confetti()}}
+function finish(){confetti();setTimeout(()=>go(6),500)}
+</script>
+</body>
+</html>
